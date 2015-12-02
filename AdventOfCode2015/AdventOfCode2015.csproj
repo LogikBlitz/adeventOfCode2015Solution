@@ -56,6 +56,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuzzleRunner.cs" />
+    <Compile Include="Puzzles\Day2\Puzzle2.cs" />
     <Compile Include="Puzzles\Day2\Puzzle1.cs" />
     <Compile Include="Puzzles\Day2\PuzzleInput.cs" />
   </ItemGroup>
