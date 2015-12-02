@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootStrap\DependencyResolver.cs" />
-    <Compile Include="Puzzles\Day1\Puzzel12.cs" />
+    <Compile Include="Puzzles\Day1\Puzzel2.cs" />
     <Compile Include="Puzzles\Day1\Puzzel1.cs" />
-    <Compile Include="Puzzles\Day1\Puzzle1Input.cs" />
+    <Compile Include="Puzzles\Day1\PuzzleInput.cs" />
     <Compile Include="IPuzzleRunner.cs" />
     <Compile Include="IPuzzle.cs" />
     <Compile Include="Program.cs" />

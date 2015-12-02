@@ -57,7 +57,7 @@ namespace AdventOfCode2015.Puzzles.Day1
 
         private int Solve()
         {
-            return GetFloor(Puzzle1Input.Data);
+            return GetFloor(PuzzleInput.Data);
         }
 
         #endregion

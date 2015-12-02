@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2015.Puzzles.Day1
 {
-    internal class Puzzel12 : IPuzzle
+    internal class Puzzel2 : IPuzzle
     {
         private const int StartFloor = 0;
         private const char Increment = '(';
@@ -59,7 +59,7 @@ namespace AdventOfCode2015.Puzzles.Day1
 
         private int Solve()
         {
-            return GetFloor(Puzzle1Input.Data);
+            return GetFloor(PuzzleInput.Data);
         }
 
         #endregion
