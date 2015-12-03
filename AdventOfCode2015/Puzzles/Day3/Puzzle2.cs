@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2015.Puzzles.Day3
 {
-    internal class Puzzle1 : IPuzzle
+    internal class Puzzle2 : IPuzzle
     {
         #region Implementation of IPuzzle
 
@@ -18,7 +18,7 @@ namespace AdventOfCode2015.Puzzles.Day3
         ///     resides within the day.
         ///     Be carefull when setting this. It is used for sorting.
         /// </summary>
-        public int PuzzleIndex => 1;
+        public int PuzzleIndex => 2;
 
         /// <summary>
         ///     The the prupose for the puzzle.
@@ -30,16 +30,18 @@ namespace AdventOfCode2015.Puzzles.Day3
         /// <returns></returns>
         public string GetPurpose()
         {
-            return "--- Day 3: Perfectly Spherical Houses in a Vacuum ---" +
-                   "Santa is delivering presents to an infinite two - dimensional grid of houses." +
-                   "He begins by delivering a present to the house at his starting location, and then an elf at the North Pole calls him via radio and tells him where to move next.Moves" +
-                   "are always exactly one house to the north(^), south(v), east(>), or west (<).After each move, he delivers another present to the house at his new location." +
-                   "However, the elf back at the north pole has had a little too much eggnog, and so his directions are a little off, and Santa ends up visiting some houses more than " +
-                   "once.How many houses receive at least one present ?" +
-                   "For example:" +
-                   "> delivers presents to 2 houses: one at the starting location, and one to the east." +
-                   "^> v < delivers presents to 4 houses in a square, including twice to the house at his starting / ending location." +
-                   "^ v ^ v ^ v ^ v ^ v delivers a bunch of presents to some very lucky children at only 2 houses.";
+            return
+                @"The next year, to speed up the process, Santa creates a robot version of himself, Robo-Santa, to deliver presents with him.
+
+Santa and Robo - Santa start at the same location(delivering two presents to the same starting house), then take turns moving based on instructions from the elf, who is eggnoggedly reading from the same script as the previous year.
+
+This year, how many houses receive at least one present?
+
+For example:
+
+^ v delivers presents to 3 houses, because Santa goes north, and then Robo-Santa goes south.
+^> v < now delivers presents to 3 houses, and Santa and Robo-Santa end up back where they started.
+^ v ^ v ^ v ^ v ^ v now delivers presents to 11 houses, with Santa going one direction and Robo - Santa going the other.";
         }
 
         /// <summary>
@@ -69,46 +71,53 @@ namespace AdventOfCode2015.Puzzles.Day3
             if (string.IsNullOrWhiteSpace(input)) throw new ArgumentNullException(input, nameof(input));
 
             var chars = input.ToCharArray();
-            var santId = 1;
-            var map = new Map(new[] {santId});
+            var santId = 0;
+            var roboSantaId = 1;
+            var map = new Map(new[] { santId, roboSantaId });
             map.PlayerMoveToCoordinate(new Coordinate(0, 0), santId);
+            map.PlayerMoveToCoordinate(new Coordinate(0,0),roboSantaId );
+            var currentPlayer = santId;
             foreach (var c in chars)
             {
-                Coordinate current;
+                var current = map.CoordinateForPlayer(currentPlayer);
                 switch (c)
                 {
                     case North:
-                        current = map.CurrentCoordinate;
-                        map.PlayerMoveToCoordinate(new Coordinate(current.X, current.Y + 1), santId);
+                        map.PlayerMoveToCoordinate(new Coordinate(current.X, current.Y + 1), currentPlayer);
 
                         break;
                     case South:
-                        current = map.CurrentCoordinate;
-                        map.PlayerMoveToCoordinate(new Coordinate(current.X, current.Y - 1), santId);
+                        map.PlayerMoveToCoordinate(new Coordinate(current.X, current.Y - 1), currentPlayer);
                         break;
                     case East:
-                        current = map.CurrentCoordinate;
-                        map.PlayerMoveToCoordinate(new Coordinate(current.X + 1, current.Y), santId);
+                        map.PlayerMoveToCoordinate(new Coordinate(current.X + 1, current.Y), currentPlayer);
                         break;
                     case West:
-                        current = map.CurrentCoordinate;
-                        map.PlayerMoveToCoordinate(new Coordinate(current.X - 1, current.Y), santId);
+                        map.PlayerMoveToCoordinate(new Coordinate(current.X - 1, current.Y), currentPlayer);
                         break;
                     default:
                         throw new Exception("Unknown char: " + c);
                 }
+
+                currentPlayer ^= 1;
+
             }
             return map.NumberOfVisitedHouses();
         }
 
         private void Validate()
         {
-            var expectation = 4;
-            var input = @"^>v<";
+            var expectation = 3;
+            var input = @"^v";
             var output = GetNumberOfVisitedHouses(input);
             if (expectation != output) throw new Exception($"Expected: {expectation} but got {output}");
 
-            expectation = 2;
+            expectation = 3;
+            input = @"^>v<";
+            output = GetNumberOfVisitedHouses(input);
+            if (expectation != output) throw new Exception($"Expected: {expectation} but got {output}");
+
+            expectation = 11;
             input = @"^v^v^v^v^v";
             output = GetNumberOfVisitedHouses(input);
             if (expectation != output) throw new Exception($"Expected: {expectation} but got {output}");
