@@ -50,6 +50,7 @@ namespace AdventOfCode2015.Puzzles.Day3
         /// <returns></returns>
         public string GetResult()
         {
+            Validate();
             var numberOfVisistedHouses = GetNumberOfVisitedHouses(PuzzleInput.PuzzleData);
             return $"Number of houses Santa visited: {numberOfVisistedHouses}";
         }
@@ -69,51 +70,26 @@ namespace AdventOfCode2015.Puzzles.Day3
 
             var chars = input.ToCharArray();
             var map = new Map();
-            var isInit = true;
+            map.SantaArrivedAtCoordinate(new Coordinate(0, 0));
             foreach (var c in chars)
             {
                 Coordinate current;
                 switch (c)
                 {
                     case North:
-                        if (isInit)
-                        {
-                            map.SantaArrivedAtCoordinate(new Coordinate(0, 0));
-                            isInit = false;
-                            break;
-                        }
-
                         current = map.CurrentCoordinate;
                         map.SantaArrivedAtCoordinate(new Coordinate(current.X, current.Y + 1));
 
                         break;
                     case South:
-                        if (isInit)
-                        {
-                            map.SantaArrivedAtCoordinate(new Coordinate(0, 0));
-                            isInit = false;
-                            break;
-                        }
                         current = map.CurrentCoordinate;
                         map.SantaArrivedAtCoordinate(new Coordinate(current.X, current.Y - 1));
                         break;
                     case East:
-                        if (isInit)
-                        {
-                            map.SantaArrivedAtCoordinate(new Coordinate(0, 0));
-                            isInit = false;
-                            break;
-                        }
                         current = map.CurrentCoordinate;
                         map.SantaArrivedAtCoordinate(new Coordinate(current.X + 1, current.Y));
                         break;
                     case West:
-                        if (isInit)
-                        {
-                            map.SantaArrivedAtCoordinate(new Coordinate(0, 0));
-                            isInit = false;
-                            break;
-                        }
                         current = map.CurrentCoordinate;
                         map.SantaArrivedAtCoordinate(new Coordinate(current.X - 1, current.Y));
                         break;
@@ -126,7 +102,15 @@ namespace AdventOfCode2015.Puzzles.Day3
 
         private void Validate()
         {
-            
+            var expectation = 4;
+            var input = @"^>v<";
+            var output = GetNumberOfVisitedHouses(input);
+            if (expectation != output) throw new Exception($"Expected: {expectation} but got {output}");
+
+            expectation = 2;
+            input = @"^v^v^v^v^v";
+            output = GetNumberOfVisitedHouses(input);
+            if (expectation != output) throw new Exception($"Expected: {expectation} but got {output}");
         }
 
         #endregion
