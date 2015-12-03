@@ -7,4 +7,6 @@ Anyone can contribute to this. :-)
 
 Improvements to the code is highly valued since the code is faily quickly written, thus optimizations, for optimization sake, is welcomed.
 
+Also other ways to solve the puzzles are highly valued.
+
 Merry Christmas everyone :-)
