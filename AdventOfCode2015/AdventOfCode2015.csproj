@@ -59,6 +59,12 @@
     <Compile Include="Puzzles\Day2\Puzzle2.cs" />
     <Compile Include="Puzzles\Day2\Puzzle1.cs" />
     <Compile Include="Puzzles\Day2\PuzzleInput.cs" />
+    <Compile Include="Puzzles\Day3\Coordinate.cs" />
+    <Compile Include="Puzzles\Day3\House.cs" />
+    <Compile Include="Puzzles\Day3\Map.cs" />
+    <Compile Include="Puzzles\Day3\Puzzle1.cs" />
+    <Compile Include="Puzzles\Day3\PuzzleInput.cs" />
+    <Compile Include="Puzzles\Day3\Santa.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
