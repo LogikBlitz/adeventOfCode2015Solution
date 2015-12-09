@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using AdventOfCode2015.BootStrap;
 using Autofac;
@@ -13,7 +11,6 @@ namespace AdventOfCode2015
 
         private static void Main(string[] args)
         {
-
             Console.CancelKeyPress += new ConsoleCancelEventHandler(Console_CancelKeyPress);
             var runner = DependencyResolver.Instance.Container.Resolve<IPuzzleRunner>();
 
@@ -117,26 +114,6 @@ namespace AdventOfCode2015
             e.Cancel = true; // Set this to true to keep the process from quitting immediately
             Thread.Sleep(1200);
             Environment.Exit(0);
-        }
-
-        private static void TestMD5()
-        {
-            using (var md5 = MD5.Create())
-            {
-                string input = "0000";
-                string output = "ABC";
-
-                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                //byte[] hashBytes = md5.ComputeHash(inputBytes);
-
-                // Convert the byte array to hexadecimal string
-                var sb = new StringBuilder();
-                foreach (byte t in inputBytes)
-                {
-                    sb.Append(t.ToString("X2"));
-                }
-                var str = sb.ToString();
-            }
         }
     }
 }
