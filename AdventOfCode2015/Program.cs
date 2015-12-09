@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using AdventOfCode2015.BootStrap;
 using Autofac;
@@ -9,11 +10,12 @@ namespace AdventOfCode2015
     internal class Program
     {
         private static bool _run;
+
         private static void Main(string[] args)
         {
+
             Console.CancelKeyPress += new ConsoleCancelEventHandler(Console_CancelKeyPress);
             var runner = DependencyResolver.Instance.Container.Resolve<IPuzzleRunner>();
-
 
             Console.Clear();
 
@@ -32,7 +34,7 @@ namespace AdventOfCode2015
                 Console.WriteLine("- Solve Puzzles for a specific range .\t\t Press 2");
                 Console.WriteLine("- Solve All puzzles from a specific day.\t Press 3");
                 Console.WriteLine("- Solve All puzzle.\t\t\t\t Press 4");
-                
+
                 var key = Console.ReadLine();
                 var parsed = 0;
                 int.TryParse(key, out parsed);
@@ -98,12 +100,11 @@ namespace AdventOfCode2015
                 Console.Clear();
             }
 
-
             Console.ReadLine();
         }
 
         /// <summary>
-        /// Event handler for ^C key press
+        ///     Event handler for ^C key press
         /// </summary>
         private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
@@ -115,7 +116,27 @@ namespace AdventOfCode2015
 
             e.Cancel = true; // Set this to true to keep the process from quitting immediately
             Thread.Sleep(1200);
-            System.Environment.Exit(0);
+            Environment.Exit(0);
+        }
+
+        private static void TestMD5()
+        {
+            using (var md5 = MD5.Create())
+            {
+                string input = "0000";
+                string output = "ABC";
+
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                //byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                var sb = new StringBuilder();
+                foreach (byte t in inputBytes)
+                {
+                    sb.Append(t.ToString("X2"));
+                }
+                var str = sb.ToString();
+            }
         }
     }
 }
