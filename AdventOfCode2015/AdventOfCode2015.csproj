@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,18 +60,24 @@
     <Compile Include="Puzzles\Day2\Puzzle2.cs" />
     <Compile Include="Puzzles\Day2\Puzzle1.cs" />
     <Compile Include="Puzzles\Day2\PuzzleInput.cs" />
-    <Compile Include="Puzzles\Day2\Day3\Coordinate.cs" />
-    <Compile Include="Puzzles\Day2\Day3\House.cs" />
-    <Compile Include="Puzzles\Day2\Day3\Map.cs" />
-    <Compile Include="Puzzles\Day2\Day3\Puzzle2.cs" />
-    <Compile Include="Puzzles\Day2\Day3\Puzzle1.cs" />
-    <Compile Include="Puzzles\Day2\Day3\PuzzleInput.cs" />
-    <Compile Include="Puzzles\Day2\Day3\Santa.cs" />
+    <Compile Include="Puzzles\Day3\Coordinate.cs" />
+    <Compile Include="Puzzles\Day3\House.cs" />
+    <Compile Include="Puzzles\Day3\Map.cs" />
+    <Compile Include="Puzzles\Day3\Puzzle2.cs" />
+    <Compile Include="Puzzles\Day3\Puzzle1.cs" />
+    <Compile Include="Puzzles\Day3\PuzzleInput.cs" />
+    <Compile Include="Puzzles\Day3\Santa.cs" />
     <Compile Include="Puzzles\Day4\Puzzle2.cs" />
     <Compile Include="Puzzles\Day4\Puzzle1.cs" />
     <Compile Include="Puzzles\Day5\Puzzle2.cs" />
     <Compile Include="Puzzles\Day5\Puzzle1.cs" />
     <Compile Include="Puzzles\Day5\PuzzleInput.cs" />
+    <Compile Include="Puzzles\Day6\Light.cs" />
+    <Compile Include="Puzzles\Day6\MapPuzzle2.cs" />
+    <Compile Include="Puzzles\Day6\Map.cs" />
+    <Compile Include="Puzzles\Day6\Puzzle2.cs" />
+    <Compile Include="Puzzles\Day6\Puzzle1.cs" />
+    <Compile Include="Puzzles\Day6\PuzzleInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
